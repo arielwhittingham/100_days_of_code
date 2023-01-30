@@ -1,5 +1,6 @@
-#include "add.h"
-#include <iostream>
+#include "add.h" // defined in the global namespace
+#include <iostream> // defined in include directories // defined in the std namespace
+
 // header files only contain the forward declarations of functions typically
 // header file should have the ame name as the .cpp file that the functon definition exists in 
 
