@@ -1,5 +1,6 @@
 #include <iostream>
 
+// source: https://www.learncpp.com/cpp-tutorial/switch-statement-basics/
 using namespace std;
 
 
@@ -21,10 +22,18 @@ int main() {
             std::cout << "five" << std::endl;
         default:
             std::cout << "DEFAULT" << std::endl;
+        } // end first switch blovk
 
-
-    }
-
-
-    return 0;
+    int y {5};
+    switch (y) {     // start second switch block
+        case 5:
+            std::cout << "five" << std::endl;
+        case 8:
+            std::cout << "eight" << std::endl;
+            break; // can use a break statement to exist switch
+        }
+        // no default so switch jsut continue here
+        std::cout << "continue" << std::endl;
+        return 0;
+    
 }
