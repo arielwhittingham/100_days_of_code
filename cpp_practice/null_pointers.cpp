@@ -1,0 +1,1 @@
+// source: https://www.learncpp.com/cpp-tutorial/introduction-to-pointers/
