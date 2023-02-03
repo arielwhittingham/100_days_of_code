@@ -44,8 +44,10 @@ int main(void) {
         case 7:
             cout << "This will fall through" << std::endl;
     }
-    std::cout << is_vowel_switch('a') << std::endl;
+    std::cout << is_vowel_switch('a') << std::endl; //using switch based function
     std::cout << is_vowel('b') << std::endl;
+
+    // all switches considered part of the same scope
 
     return 0;
  }

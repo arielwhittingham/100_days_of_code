@@ -27,7 +27,7 @@ int main() {
     int y {5};
     switch (y) {     // start second switch block
         case 5:
-            std::cout << "five" << std::endl;
+            std::cout << "five" << std::endl; // once the condition is met, all other statements below will run, so you have to break or return 
         case 8:
             std::cout << "eight" << std::endl;
             break; // can use a break statement to exist switch
