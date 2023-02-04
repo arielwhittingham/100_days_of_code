@@ -1,5 +1,6 @@
 #include <iostream>
 #include <typeinfo> 
+// source: https://www.learncpp.com/cpp-tutorial/unscoped-enumerations/
 
 using namespace std;
 
