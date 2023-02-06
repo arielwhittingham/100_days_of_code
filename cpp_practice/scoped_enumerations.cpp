@@ -47,13 +47,19 @@ int main() {
     Color color { Color::red }; // note: red is not directly accessible, we have to use Color::red
     Fruit fruit { Fruit::banana }; // note: banana is not directly accessible, we have to use Fruit::banana
 
-    if (color == fruit)  // compile error: the compiler doesn't know how to compare different types Color and Fruit
+    /*
+    if (color == fruit)  // compile error: the compiler doesn't know how to compare different types Color and Fruit open rev 
         std::cout << "color and fruit are equal\n";
     else
         std::cout << "color and fruit are not equal\n";
+    */
 
-    
+    // Scoped enumerations don't implicetley convert to integers
 
+    if (static_cast<int>(color) == static_cast<int>(fruit))  
+        std::cout << "color and fruit are equal\n";
+    else
+        std::cout << "color and fruit are not equal\n";    
 
     return 0;
 }
