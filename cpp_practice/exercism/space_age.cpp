@@ -1,7 +1,7 @@
 #include "space_age.h"
 #include <iostream>
 
-// source :https://exercism.org/tracks/cpp/exercises/space-age/edit
+// surce :https://exercism.org/tracks/cpp/exercises/space-age/edit
 
 namespace space_age {
 
