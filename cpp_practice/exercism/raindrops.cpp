@@ -7,26 +7,20 @@ namespace raindrops {
     std::string convert(int i) {
 
         std::string result {""};
-        if(i % 3 ==  0) {
+        if(i % 3 == 0) {
             result+= "Pling";
         }
         
-        if(i % 5 ==  0) {
+        if(i % 5 == 0) {
             result+= "Plang";
         }
         
-        if(i % 7 ==  0) {
+        if(i % 7 == 0) {
             result+= "Plong";
         }
-        if(result=="") {
-            return std::to_string(i);
+        if(result == "") {
+            result = std::to_string(i);
         }
-        else {
-            
-        }
-
-
-
         return result;
     }
 
