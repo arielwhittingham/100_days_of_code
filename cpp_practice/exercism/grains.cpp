@@ -28,21 +28,23 @@ Did you learn anything from it?
 
 */
 namespace grains {
-
-    unsigned long long square(int x) {
-        unsigned long long result{};
+    
+    #define SQUARES_IN_CHESS 64
+    
+    ull square(int x) {
+        ull result{};
         result = std::pow(2, x-1);
         return result;
     }
-    #define SQUARES_IN_CHESS 64
 
-    unsigned long long total() {
-        unsigned long long x {SQUARES_IN_CHESS};
-        if(x==1) {
-            return 1;
+    ull total() {
+        ull result {0};
+        ull base {2};
+        for(int x = 0; x <= SQUARES_IN_CHESS ; x++) {
+            result += pow(base,x) ;
         }
-        else {
-            return std::pow(2, x) + std::pow(2, x-1);
-        }
+        
+        return (result);
+    
     }
 }

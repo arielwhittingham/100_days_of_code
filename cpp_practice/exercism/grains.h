@@ -1,12 +1,12 @@
 #ifndef GRAINS_H
 #define GRAINS_H
 
-
+using ull = unsigned long long int;
 
 namespace grains {
 
-    unsigned long long square(int x);    
-    unsigned long long total();
+    ull square(int x);    
+    ull total();
 
 }
 
