@@ -1,4 +1,11 @@
 #include <iostream>
+#include <iterator> // for std::size
+// source: https://www.learncpp.com/cpp-tutorial/arrays-part-ii/
+
+void array_const(const int arr[]) { // this function can't change the value of array
+    std::cout << arr[0] << std::endl;
+    
+}
 
 using namespace std;
 
@@ -18,6 +25,13 @@ int main () {
     array_houshold_age[timi] = 2;
 
     std::cout << array_houshold_age[timi] << std::endl;
+    
+    // passing arrays to functions
+    // arrays are passed by reference
+    // if you want to ensure the ontents don't change pass as a constant 
+
+    array_const(array);
+    cout << std::size(array) << endl;
 
 
 }
