@@ -25,9 +25,7 @@ int main() {
     print_employee_id(e);
 
 std::cout << " Verbose: "<< (*ee).id << std::endl;
-std::cout << " Succinct: " << ee->id << std::endl;
-    
-
+std::cout << " Succinct: " << ee->id << std::endl; // member selection preferred way
     
     return 0;
 }

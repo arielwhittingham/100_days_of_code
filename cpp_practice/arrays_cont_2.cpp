@@ -33,5 +33,9 @@ int main () {
     array_const(array);
     cout << std::size(array) << endl;
 
+    constexpr int scores[]{ 84, 92, 76, 81, 56 };  // declare the size of the array as constant
+    constexpr int numStudents{ static_cast<int>(std::size(scores)) };
+
+
 
 }

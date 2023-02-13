@@ -4,7 +4,12 @@
 int main() {
 
     bool r{};
+    int n{};
 
-    r = nth_prime::is_prime(5);
+    r = nth_prime::is_prime(7);
+    n = nth_prime::nth(10001);
+
     std::cout << r << std::endl;
+    std::cout << n << std::endl;
+    return 0;
 }    

@@ -2,6 +2,7 @@
 
 using namespace std;
 
+// source: https://www.learncpp.com/cpp-tutorial/unscoped-enumerations/
 
 // one way to define a color code for examples:
 
@@ -56,7 +57,12 @@ int main() {
     if(result == success) {
         // do something
         return 0;
+
     }
+
+    // best practice to put enumations inside a namespace scope or class
+
+    
 
     
 

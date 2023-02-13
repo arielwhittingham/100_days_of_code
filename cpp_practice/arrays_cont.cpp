@@ -26,6 +26,11 @@ int main() {
     int week[DAYS_IN_WEEK]{};
     std::cout << " length of week: " << sizeof(week)/sizeof(week[3]) << std::endl;
 
+    // for constants you have to use a compile time constant for the length of the array
+
+
+
+
 
 
 

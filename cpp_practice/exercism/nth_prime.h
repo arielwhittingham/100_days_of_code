@@ -5,6 +5,7 @@
 namespace nth_prime {
 
   bool is_prime(int x);  
+  int nth(int inp);
 
 
 } 

@@ -26,9 +26,9 @@ int main() {
 
     // using the standard library pair for the pair of data
 
-    std::pair<int, int> pair_1  {1,4};
+    std::pair<int, int> pair_1 {1,4};
 
-    
+
 
 }
 
