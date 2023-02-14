@@ -1,5 +1,6 @@
 #include "nth_prime.h"
 #include <iostream>
+#include <stdexcept>
 /*
 Instructions:
 Given a number n, determine what the nth prime is.
@@ -16,14 +17,12 @@ exist and implement them yourself.
 namespace nth_prime {
 
 
-    int x {7};
-
     bool is_prime(int x) {
         int divisors {0};
         bool res {};
-        int max = (x/2) + 1;
+        int max = ((x/2) + 1);
         for(int i{1}; i <= max; i++) {
-            if(x % i == 0) {
+            if(x % i == 0 && i !=x) {
                 divisors +=1;
             }
             
@@ -44,6 +43,9 @@ namespace nth_prime {
     int nth(int inp) {
         int primes {0};
         int nums {0};
+        if(inp < 1) {
+            throw std::domain_error("Nothing below 1");
+        }
 
         do {
             nums++;
@@ -51,7 +53,7 @@ namespace nth_prime {
                 primes +=1;                
             } 
 
-        } while (primes != inp);
+        } while (primes != inp );
         return nums;
     }
 

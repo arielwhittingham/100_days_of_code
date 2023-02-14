@@ -7,7 +7,7 @@ int main() {
     int n{};
 
     r = nth_prime::is_prime(7);
-    n = nth_prime::nth(10001);
+    n = nth_prime::nth(1);
 
     std::cout << r << std::endl;
     std::cout << n << std::endl;
