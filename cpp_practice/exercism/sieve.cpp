@@ -37,24 +37,55 @@ namespace sieve {
         
         std::vector<int> primes(int n) {
 
-            std::vector<int> vect;
-            for(int it = 1; it <= n; it++) {
-                vect.push_back(it);
+            std::vector<std::vector<int>> vect;
+
+
+            // Create vector of vectors with each value as {val,0 or 1} i.e. true or false
+            for(int it {0}; it <= n-2; it++) {
+                int val {it +2}; // first prime number (it) is 2 
+                vect[it].push_back((val,0));
             }
+
+            // loop though vector and if any number is a multiple then mark it as 1
+
             // while()
             /*
             vect:
+            {
 
             {1,0},
             {2,0},
             {3,0},
-            {4,1),
-            
+            {4,1)
+            )
             // while(result <=n )
             inter = 2
-
-
             */
+           int iterator{2}; /// start multiplying each number by 2, then 3, 4 and so on and mark 
+                              // each of those values off, {val, 0 or 1}, 1 means it is marked off
+            
+           int loop_val; // this will hold each prime number
+           int multiplied_result {1}; // this will hold each prime number `loop_val * iterator` as the multiple
+           
+        
+            for(int indexer {0}; indexer < vect.size(); indexer ++) {
+                if(vect[indexer][1] == 0) { // if value is prime
+                    loop_val =  vect[indexer][0]; 
+                    multiplied_result = loop_val;
+                       while(multiplied_result < n) {
+
+                        }
+
+            
+           }
+
+
+
+
+           
+
+
+
 
 
 
