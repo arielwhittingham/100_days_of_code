@@ -32,19 +32,33 @@ list of primes. A good first test is to check that you do not use division or re
 operations (div, /, mod or % depending on the language).*/
 
 // vextors: https://www.geeksforgeeks.org/initialize-a-vector-in-cpp-different-ways/
+
+// https://stackoverflow.com/questions/36836643/stdvector-segmentation-fault-during-push-back
+// https://stackoverflow.com/questions/60393716/segmentation-fault-when-using-vector-push-back-inside-of-certain-loops
+
 namespace sieve {
 
         
         std::vector<int> primes(int n) {
 
             std::vector<std::vector<int>> vect;
-
+            std::vector<int> return_vector;
+            int vector_length_test = n - 2;
 
             // Create vector of vectors with each value as {val,0 or 1} i.e. true or false
-            for(int it {0}; it <= n-2; it++) {
-                int val {it +2}; // first prime number (it) is 2 
-                vect[it].push_back((val,0));
+            for(int it {0}; it < n-1; it++) {
+                std::cout << "Here fist: "<< std::endl;
+                std::cout <<  "IT: " <<it << std::endl;
+                int val {it+2};
+                std::vector<int> intermediate_vect = {val,0}; // first prime number (it) is 2 
+                std::cout  << " index: " << it << std::endl;
+                std::cout << val << std::endl;
+                vect.push_back(intermediate_vect);
+                std::cout << "Here: "<< std::endl;
             }
+
+            int v_size {static_cast<int>(vect.size())};
+            // std::cout << v_size << std::endl;
 
             // loop though vector and if any number is a multiple then mark it as 1
 
@@ -68,33 +82,30 @@ namespace sieve {
            int multiplied_result {1}; // this will hold each prime number `loop_val * iterator` as the multiple
            
         
-            for(int indexer {0}; indexer < vect.size(); indexer ++) {
+            for(int indexer {0}; indexer < v_size; indexer ++) {
                 if(vect[indexer][1] == 0) { // if value is prime
                     loop_val =  vect[indexer][0]; 
                     multiplied_result = loop_val;
-                       while(multiplied_result < n) {
-
+                       while(true) {
+                            multiplied_result = loop_val * iterator;
+                            int index_in_vextor = multiplied_result - 2;
+                            if(vect[index_in_vextor][0] <= n) { 
+                                vect[index_in_vextor][1] = 1; // find this multiplied_result in the vector and set it as found i.e. :  {multiplied_result,1}.
+                            }
+                            else {
+                                break;
+                            }
+                            iterator++;
                         }
-
+                } 
+            }
             
-           }
-
-
-
-
-           
-
-
-
-
-
-
-        }
+            for(int v =0;v < v_size;v++) {
+                if(vect[v][1] == 0) {
+                return_vector.push_back(vect[v][0]);
+                }
+            }
         
-
-        
-        
-
-
-
+        return return_vector;
+    }
 }
