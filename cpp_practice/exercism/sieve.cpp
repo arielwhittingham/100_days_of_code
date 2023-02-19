@@ -35,30 +35,27 @@ operations (div, /, mod or % depending on the language).*/
 
 // https://stackoverflow.com/questions/36836643/stdvector-segmentation-fault-during-push-back
 // https://stackoverflow.com/questions/60393716/segmentation-fault-when-using-vector-push-back-inside-of-certain-loops
+// https://www.google.com/search?q=loop+through+2d+vector+c%2B%2B&sxsrf=AJOqlzWHSey4dNpK1zNjFKezmIGKztMdNQ%3A1676791013205&ei=5czxY7WVDIeEwbkP5byCiAQ&oq=loop+through+2d+vector&gs_lcp=Cgxnd3Mtd2l6LXNlcnAQARgBMgQIIxAnMgUIABCABDIJCAAQFhAeEPEEMgkIABAWEB4Q8QQyCQgAEBYQHhDxBDoKCAAQRxDWBBCwAzoGCAAQFhAeOgUIABCGA0oECEEYAFC5C1iAE2C8HmgBcAF4AIABR4gB9AKSAQE2mAEAoAEByAEIwAEB&sclient=gws-wiz-serp
+// https://stackoverflow.com/questions/58981573/iteration-in-2d-vector-in-c
+
+
 
 namespace sieve {
 
         
         std::vector<int> primes(int n) {
 
-            std::vector<std::vector<int>> vect;
+            std::vector<std::vector<int>> vect(n-1);
             std::vector<int> return_vector;
-            int vector_length_test = n - 2;
-
+            const int v_size {static_cast<int>(vect.size())};
+            
             // Create vector of vectors with each value as {val,0 or 1} i.e. true or false
-            for(int it {0}; it < n-1; it++) {
-                std::cout << "Here fist: "<< std::endl;
-                std::cout <<  "IT: " <<it << std::endl;
+            for(int it {0}; it < v_size; it++) {
                 int val {it+2};
                 std::vector<int> intermediate_vect = {val,0}; // first prime number (it) is 2 
-                std::cout  << " index: " << it << std::endl;
-                std::cout << val << std::endl;
                 vect.push_back(intermediate_vect);
-                std::cout << "Here: "<< std::endl;
+             
             }
-
-            int v_size {static_cast<int>(vect.size())};
-            // std::cout << v_size << std::endl;
 
             // loop though vector and if any number is a multiple then mark it as 1
 
@@ -81,14 +78,29 @@ namespace sieve {
            int loop_val; // this will hold each prime number
            int multiplied_result {1}; // this will hold each prime number `loop_val * iterator` as the multiple
            
-        
-            for(int indexer {0}; indexer < v_size; indexer ++) {
-                if(vect[indexer][1] == 0) { // if value is prime
-                    loop_val =  vect[indexer][0]; 
+            
+            
+            for(auto& row: vect) {
+                std::cout<< "Here 0: " << std::endl;
+                std::cout<< row[0] << std::endl;
+            // for(std::vector<std::vector<int>>::iterator indexer = vect.begin(); indexer != vect.end(); indexer++) {
+                std::cout<< "Here 1: " << std::endl;
+                // declare column
+                std::vector<std::vector<int>>::iterator indexer = vect.begin();
+                // std::vector<int>::iterator col = 
+                // col = 1;
+                std::cout << (*indexer)[0] << std::endl;
+                if((*indexer)[1] == 0) { // if value is prime
+                
+                    loop_val =  (*indexer)[0]; 
+                    
                     multiplied_result = loop_val;
+                    std::cout << "multiplied_result: " << multiplied_result << std::endl;
                        while(true) {
                             multiplied_result = loop_val * iterator;
+                            std::cout << "multiplied_result: " << multiplied_result << std::endl;
                             int index_in_vextor = multiplied_result - 2;
+                            std::cout << "Index in vector: " << index_in_vextor << std::endl;
                             if(vect[index_in_vextor][0] <= n) { 
                                 vect[index_in_vextor][1] = 1; // find this multiplied_result in the vector and set it as found i.e. :  {multiplied_result,1}.
                             }
