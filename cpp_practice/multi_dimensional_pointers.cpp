@@ -23,7 +23,18 @@ int main () {
      “pointer to integer” instead of integer.
      * 
      */
-    // multide
+    // multidimensional array of pointers
+
+    int** aarray { new int*[10] }; // allocate an array of 10 int pointers — these are our rows
+    for (int count { 0 }; count < 10; ++count) {
+        aarray[count] = new int[5]; // these are our columns
+    }
+
+    for (int count { 0 }; count < 10; ++count) {
+        delete[] aarray[count];
+    }
+    delete[] aarray; // this needs to be done last
+
 
     
 
