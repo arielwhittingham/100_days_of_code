@@ -6,6 +6,15 @@
 // source https://www.learncpp.com/cpp-tutorial/an-introduction-to-stdarray/
 using namespace std;
 
+template <typename T, std::size_t size >
+int array_funct(const std::array<T,size>& arr) { // passing arrays of different lengths and types
+    std::cout << arr.at(0) << endl;              // passing as an array reference instead of copying    
+    return arr.at(0);
+} 
+
+
+
+
 int main () {
 
     /**
@@ -24,6 +33,17 @@ int main () {
 
     std::cout << myArray[1] << '\n';
     myArray[2] = 6;
+
+    std::cout << "using array at:" << myArray2.at(1) << endl;
+
+    std::cout << "pass to array function" << array_funct(myArray2) << endl;
+
+    //looping through using size_t
+    std::array myArray5 { 7, 3, 1, 9, 5 };
+    for(std::size_t i {0}; i < myArray.size(); i++) {
+        cout << myArray5[i] << endl;
+    }
+
 
 
 

@@ -54,7 +54,6 @@ namespace sieve {
                 int val {it+2};
                 std::vector<int> intermediate_vect = {val,0}; // first prime number (it) is 2 
                 vect.push_back(intermediate_vect);
-             
             }
 
             // loop though vector and if any number is a multiple then mark it as 1
@@ -71,9 +70,23 @@ namespace sieve {
             )
             // while(result <=n )
             inter = 2
-            */
-           int iterator{2}; /// start multiplying each number by 2, then 3, 4 and so on and mark 
-                              // each of those values off, {val, 0 or 1}, 1 means it is marked off
+             * @brief 
+             * int main(){
+                    std::vector<std::vector<int>> vec;
+                    // add some data to vec
+                    for(const auto &v: vec){    // the & is important otherwise you copy the inner vector
+                        for(const auto &i: v){  
+                            std::cout << i << ' ';
+                        }
+                        std::cout << '\n';
+                    }
+                    return 0;
+                }
+             * 
+             */
+
+            int iterator{2}; /// start multiplying each number by 2, then 3, 4 and so on and mark 
+                    // each of those values off, {val, 0 or 1}, 1 means it is marked off
             
            int loop_val; // this will hold each prime number
            int multiplied_result {1}; // this will hold each prime number `loop_val * iterator` as the multiple
@@ -82,19 +95,10 @@ namespace sieve {
             
             for(auto& row: vect) {
                 std::cout<< "Here 0: " << std::endl;
-                std::cout<< row[0] << std::endl;
-            // for(std::vector<std::vector<int>>::iterator indexer = vect.begin(); indexer != vect.end(); indexer++) {
+                loop_val = (row)[0];
                 std::cout<< "Here 1: " << std::endl;
-                // declare column
-                std::vector<std::vector<int>>::iterator indexer = vect.begin();
-                // std::vector<int>::iterator col = 
-                // col = 1;
-                std::cout << (*indexer)[0] << std::endl;
-                if((*indexer)[1] == 0) { // if value is prime
-                
-                    loop_val =  (*indexer)[0]; 
-                    
-                    multiplied_result = loop_val;
+                if(row[1] == 0) {
+                    multiplied_result = (int) row[0];
                     std::cout << "multiplied_result: " << multiplied_result << std::endl;
                        while(true) {
                             multiplied_result = loop_val * iterator;
