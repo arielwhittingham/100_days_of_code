@@ -42,36 +42,87 @@ operations (div, /, mod or % depending on the language).*/
 
 
 namespace sieve {
-        
-    #define ROW_SIZE 2
-
     struct Pair {
         int v;
         int p;
     };
     
-        std::vector<int> primes(int n) {
+        std::vector<int> primes(int n) { // https://stackoverflow.com/questions/936687/how-do-i-declare-a-2d-array-in-c-using-new
+                                         // https://stackoverflow.com/questions/936687/how-do-i-declare-a-2d-array-in-c-using-new/936709#936709
 
-                std::cin >> n;
+/* 
+                               CREATE SIEVE 
+                        |                            |
+                        v                            v
+
+*/
+                   
                 std::size_t size = n - 1;
                 
-
-                    auto arr2d = new Pair [size][ROW_SIZE];
+                    Pair **arr_of_nums = new Pair* [size];
 
                     for(int i {0}; i < size; i++) {
-                        arr2d[i][0].v = i + 2;
-                        arr2d[i][1].v = 0;
+                        arr_of_nums[i] = new Pair;
+                        (*arr_of_nums[i]).v = i+2;
+                        (*arr_of_nums[i]).p = 0;
                     }
 
-                    for(int y {0}; y < size; y++) {
-                        // print out the value and the prime boolean
-                        std::cout << "val: " << arr2d[y][0].v << " -- boolean prime: " << arr2d[y][0].p << std::endl;
+                    // for(int y {0}; y < size; y++) {
+                    //     // print out the value and the prime boolean
+                    //     std::cout << "val: " << arr_of_nums[y][0].v << " -- boolean prime: " << arr_of_nums[y][0].p << std::endl;
                     
-                    }
+                    // } 
+/* 
+                        ^ REMEMBER DO DEALLOCATE THIS ^ 
+                        |                             |
 
-                    std::vector<std::vector<int>> vec2; // 2 d vec
-                    std::vector<int> vec;
-                return vec;
+*/
+
+/* 
+                          UPDATE SIEVE USING MULTIPLICATION
+                        |                                   |
+                        v                                   v
+*/
+                   std::vector<int> vec;
+                   int multiplier {2};
+                   for(int x {0}; x < size; x++) {
+                   
+                        if( (*arr_of_nums[x]).p == 0) {
+                            int prime_value = (*arr_of_nums[x]).v;
+                            std::cout << "Prime: " << prime_value <<std::endl;
+                            // start while loops at multiplier start value
+                            int multiplied_result {2};
+                            while(multiplied_result <= n) {
+                                multiplied_result = multiplier * prime_value;
+                                int value_index =  multiplied_result - 2; // index of value in the array
+                                
+                                std::cout << "mr:" << multiplied_result << " = "  << prime_value << "x" << prime_value << std::endl;
+                                if(multiplied_result <= n) {
+                                    (*arr_of_nums[value_index]).v = 1;
+                                }
+                                else {
+                                    break;
+                                }
+                                multiplier++;
+                            }
+                        }
+                   }
+
+                   std::cout << "Is prime? " << (*arr_of_nums[2]).p << std:: endl;
+
+                   for(int x {0}; x < size; x++) {
+                        if((*arr_of_nums[x]).p == 0) {
+                            vec.push_back((*arr_of_nums[x]).v);
+                        }
+                   }
+
+                //    for(const auto &v: vec){ 
+                //     std::cout << v << std::endl;
+                //    }
+
+                   return vec;
+                   // std::vector<std::vector<int>> vec2; // 2 d vec
+
         }
 }
         
