@@ -59,10 +59,16 @@ namespace sieve {
                    
                 std::size_t size = n - 1;
                 
-                    Pair **arr_of_nums = new Pair* [size];
+                    Pair *arr_of_nums = new Pair[size];
 
                     for(int i {0}; i < size; i++) {
-                        arr_of_nums[i] = new Pair;
+                        Pair *inter_p = new Pair;
+                        inter_p->v = i+2;
+                        inter_p->p = 0;
+
+                        arr_of_nums[i] = inter_p;
+                        std::cout << " i+2: "<< i+2 <<  std::endl;
+                        std::cout << " I: "<< i <<  std::endl;
                         (*arr_of_nums[i]).v = i+2;
                         (*arr_of_nums[i]).p = 0;
                     }
@@ -85,18 +91,23 @@ namespace sieve {
 */
                    std::vector<int> vec;
                    int multiplier {2};
-                   for(int x {0}; x < size; x++) {
                    
+                   for(int x {0}; x < size; x++) {
+                    Pair *prime_pair = arr_of_nums[x];
+                    int prime_value = prime_pair->v;
+                    
+                    std::cout <<  " index: "<< x << "-- V: " << prime_value << std::endl;
                         if( (*arr_of_nums[x]).p == 0) {
-                            int prime_value = (*arr_of_nums[x]).v;
-                            std::cout << "Prime: " << prime_value <<std::endl;
+                            // std::cout << "Prime: " << (*arr_of_nums[x]).v << std::endl;
+                            
+                            // std::cout << "Prime: " << prime_value <<std::endl;
                             // start while loops at multiplier start value
                             int multiplied_result {2};
                             while(multiplied_result <= n) {
                                 multiplied_result = multiplier * prime_value;
                                 int value_index =  multiplied_result - 2; // index of value in the array
                                 
-                                std::cout << "mr:" << multiplied_result << " = "  << prime_value << "x" << prime_value << std::endl;
+                                // std::cout << "mr:" << multiplied_result << " = "  << prime_value << "x" << prime_value << std::endl;
                                 if(multiplied_result <= n) {
                                     (*arr_of_nums[value_index]).v = 1;
                                 }
@@ -108,7 +119,7 @@ namespace sieve {
                         }
                    }
 
-                   std::cout << "Is prime? " << (*arr_of_nums[2]).p << std:: endl;
+                //    std::cout << "Is prime? " << (*arr_of_nums[2]).p << std:: endl;
 
                    for(int x {0}; x < size; x++) {
                         if((*arr_of_nums[x]).p == 0) {
