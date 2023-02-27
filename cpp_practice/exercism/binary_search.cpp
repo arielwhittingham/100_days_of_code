@@ -47,6 +47,32 @@ TEST_CASE("finds_a_value_in_an_array_of_even_length")
 
 namespace binary_search {
 
+    /* std::size_t shoud be the final return type */
+    int find(std::vector<int> vec, int search_val)   {
+
+        /* 
+        function plan:
+            1. Get length of input vector
+                1a. set max and min value: (0 to size - 1)
+
+            2. Find middle of array
+                2a. if size is even: middle index ->> size/2 -1
+                2b. if size is odd: middle index ->> (size -1) /2
+            3. Get middle array item
+                if(middle array item is )
+        */
+
+        const std::vector<int> test_data {1, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377};
+        int size {static_cast<int>(test_data.size())};
+        std::cout << size << std::endl;
+
+
+        return size;
+
+    
+    }
+
+
 
 
 }
