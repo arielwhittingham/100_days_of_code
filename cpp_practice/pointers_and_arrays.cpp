@@ -56,11 +56,6 @@ int main() {
     0x16d7eaebc
     */
 
-#include <algorithm>
-#include <iostream>
-#include <iterator> // for std::begin and std::end
-
-
 
 
     char name[]{ "Mollie" };
@@ -69,6 +64,11 @@ int main() {
     auto numVowels{ std::count_if(std::begin(name), std::end(name), isVowel) };
 
     std::cout << name << " has " << numVowels << " vowels.\n";
+
+    int name_length {std::size(name)};
+    std::count_if(name, name + name_length, isVowel); // name is a pointer to the first element. Name + name_length is the pointer to first element 
+                                                       //through last element , via name_length
+                                                       
 
     return 0;
 

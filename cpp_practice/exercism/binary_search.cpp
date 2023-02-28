@@ -45,26 +45,75 @@ TEST_CASE("finds_a_value_in_an_array_of_even_length")
 */
 
 
+
 namespace binary_search {
+
+    int get_middle_index_from_len(int len) {
+
+        if(len==1) {
+            return 0;
+        }
+
+        else {
+            if(len % 2 == 0) {//even case
+                return (len / 2) - 1;
+            }
+            
+            else { //odd case
+                return (len - 1) / 2;
+            }
+        }
+    }
+
+    // const std::vector<int> test_data {1, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377};
 
     /* std::size_t shoud be the final return type */
     int find(std::vector<int> vec, int search_val)   {
-
         /* 
         function plan:
             1. Get length of input vector
                 1a. set max and min value: (0 to size - 1)
-
             2. Find middle of array
-                2a. if size is even: middle index ->> size/2 -1
-                2b. if size is odd: middle index ->> (size -1) /2
+                2a. if size is even: 
+                    middle index ->> size/2 -1
+                2b. if size is odd: 
+                    middle index ->> (size -1) /2            
+
             3. Get middle array item
-                if(middle array item is )
+                3a. Keep track of absolute index of middle item
+                    
+                    if(middle array item matches):
+                        return index
+                    else:
+                        3b. If array len is 1 and not match:
+                                return "not found"
+                            if search item is less than middle:
+                                repeat steps 2/3 on left array
+                            if search item is more than middle: 
+                                repeat steps 2/3 on right array
         */
 
-        const std::vector<int> test_data {1, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377};
-        int size {static_cast<int>(test_data.size())};
-        std::cout << size << std::endl;
+        
+        int size {static_cast<int>(vec.size())};
+        int middle {get_middle_index_from_len(size)};
+        int select = vec[middle]; 
+        std::cout << "mid: "<< middle << " size: " << size << std::endl;
+        
+        if(size == 1) {// base case
+            if(vec[0] == search_val) {
+                return 10000;
+            }
+            else {
+                return 0;
+            }
+        }
+        // left 
+        // int select = 
+
+
+        //right 
+        
+        
 
 
         return size;

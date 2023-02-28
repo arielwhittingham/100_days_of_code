@@ -21,6 +21,11 @@ bool divisible_by_thirteen(int n) {
 
 };
 
+int multply_by_two(int& x) {
+    x *= 2;
+    return x;
+}
+
 int main() {
     /*
     std::find searches for the first occurrence of a value in a container. 
@@ -92,6 +97,21 @@ int main() {
     for(auto x: sort_array) {
         std::cout << x << std::endl;
     }
+
+    /* 
+    std::for_each
+    need some kind of function that does something to each value
+    */
+
+    std::for_each(sort_array.begin(),sort_array.end(),multply_by_two) ;
+    
+    for(auto x: sort_array) {
+        std::cout << x << std::endl;
+    }
+
+
+
+
 
     return 0;
 }
