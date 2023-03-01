@@ -96,7 +96,7 @@ namespace binary_search {
         
         int size {static_cast<int>(vec.size())};
         int middle {get_middle_index_from_len(size)};
-        int select = vec[middle]; 
+        int select = vec[middle]; // thisis the temp value we are checking against 
         std::cout << "mid: "<< middle << " size: " << size << std::endl;
         
         if(size == 1) {// base case
