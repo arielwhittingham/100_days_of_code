@@ -8,7 +8,7 @@ namespace binary_search {
 
     /* std::size_t shoud be the final return type */
 
-    int find(std::vector<int> vec, int search_val);
+    std::size_t find(std::vector<int> vec, int search_val);
 
 }
 
