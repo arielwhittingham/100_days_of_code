@@ -1,6 +1,7 @@
 #include <iostream>
+#include <vector>
 
-// source: 
+// source: https://www.learncpp.com/cpp-tutorial/recursion/
 
 /*
 
@@ -29,9 +30,51 @@ void count_down(int n) {
     }
 }
 
-int main() {
+int* f = new int;
 
-    count_down(10);
+int fib(int nth) {
+    (*f)++;
+    // print the nth fibonacci number 
+    if(nth == 0 || nth == 1) {
+        return nth;
+    }
+    else {
+        std::cout << *f << std::endl;
+        return fib(nth-1) + fib(nth-2);
+    }
+
+}
+
+int fib_with_memo(int nth) {
+    (*f)++;
+    
+    static vector<int> memo{0,1};
+    if(nth < (static_cast<int>(memo.size()) - 1)) {
+        return memo[nth];
+    }
+    else {
+        std::cout << *f << std::endl;
+        memo.push_back(fib_with_memo(nth-1) + fib_with_memo(nth-2));
+        return memo[nth];
+    }
+
+}
+
+int main() {
+    
+
+    // count_down(10);
+
+    /*
+    memoization algorithms
+    */
+
+   
+   *f = 0;
+    // int g = fib(10);
+
+    int h = fib_with_memo(10);
+
 
     return 0;
 
