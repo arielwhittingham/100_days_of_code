@@ -11,11 +11,18 @@ This code searches through an array of strings looking for the first element tha
 Found walnut
 And while it works, it could be improved.
 
-The root of the issue here is that std::find_if requires that we pass it a function pointer. Because of that, we are forced to define a function that’s only going to be used once, that must be given a name, and that must be put in the global scope (because functions can’t be nested!). The function is also so short, it’s almost easier to discern what it does from the one line of code than from the name and comments.
+The root of the issue here is that std::find_if requires that we pass it a
+ function pointer. Because of that, we are forced to define a function that’s only 
+ going to be used once, that must be given a name, and that must be put in the global 
+ scope (because functions can’t be nested!). The function is also so short, it’s almost
+  easier to discern what it does from the one line of code than from the name and comments.
 
 Lambdas are anonymous functions
 
-A lambda expression (also called a lambda or closure) allows us to define an anonymous function inside another function. The nesting is important, as it allows us both to avoid namespace naming pollution, and to define the function as close to where it is used as possible (providing additional context).
+A lambda expression (also called a lambda or closure) 
+allows us to define an anonymous function inside another function. 
+The nesting is important, as it allows us both to avoid namespace naming pollution, 
+and to define the function as close to where it is used as possible (providing additional context).
 
 The syntax for lambdas is one of the weirder things in C++, and takes a bit of getting used to. Lambdas take the form:
 
@@ -23,12 +30,12 @@ The syntax for lambdas is one of the weirder things in C++, and takes a bit of g
 {
     statements;
 }
-The capture clause can be empty if no captures are needed.
-The parameter list can be either empty or omitted if no parameters are required.
-The return type is optional, and if omitted, auto will be assumed (thus using type deduction used 
-to determine the return type). While we previously noted that type deduction for function return types should be avoided, 
-in this context, it’s fine to use (because these functions are typically so trivial).
-Also note that lambdas (being anonymous) have no name, so we don’t need to provide one.
+- The capture clause can be empty if no captures are needed.
+- The parameter list can be either empty or omitted if no parameters are required.
+- The return type is optional, and if omitted, auto will be assumed (thus using type deduction used to 
+    determine the return type). While we previously noted that type deduction for function return types should be avoided, 
+    in this context, it’s fine to use (because these functions are typically so trivial).
+- Also note that lambdas (being anonymous) have no name, so we don’t need to provide one.
 
 
 
@@ -57,5 +64,59 @@ int main()
         std::cout << "Found " << *found << '\n';
     }
 
+
+    /*
+    Lambda version:
+    */
+
+    // trivial lambda function
+
+    [] {}; // a lambda with an omitted return type, no captures, and omitted parameters.
+
+    auto found_lambda{ std::find_if(arr.begin(), arr.end(), 
+    // LAMBDA FUNCTION DECLARATION START
+    [] (std::string_view str_lam) {  // <- paramters
+        // function body
+
+        return (str_lam.find("nut") != std::string_view::npos); // std::string_view::npos means no substring string was found
+                                                                // in the string
+        } 
+        // LAMBDA FUNCTION DECLARATION END
+
+        ) };
+
+    if (found_lambda == arr.end())
+    {
+        std::cout << "No nuts with lambda\n";
+    }
+    else
+    {
+        std::cout << "Found with lambda: " << *found_lambda << '\n';
+    }
+
+    /* 
+    You can also define a lambda and assign it to avaiable like this: 
+    ---------
+
+    auto lambda_func_name { // auto type for this - variable type is unique and not important
+        [] ()
+        {
+            //lambda definition
+        }
+    };
+
+    ---------
+    */
+
+   // Lamdas for simple things ca sometimes be avoided using the library functions in the
+   // <functional> library, i.e.  std::greater{}
+   // ex. as used in:
+   //     std::sort(arr.begin(), arr.end(), std::greater{}); 
+
+
+
+    
     return 0;
+
+
 }
