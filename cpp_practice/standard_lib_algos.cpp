@@ -100,10 +100,11 @@ int main() {
 
     /* 
     std::for_each
+    
     need some kind of function that does something to each value
     */
 
-    std::for_each(sort_array.begin(),sort_array.end(),multply_by_two) ;
+    std::for_each(sort_array.begin(),sort_array.end(),multply_by_two);
     
     for(auto x: sort_array) {
         std::cout << x << std::endl;

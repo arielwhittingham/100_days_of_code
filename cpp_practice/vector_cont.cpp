@@ -32,6 +32,12 @@ int main() {
     /*
     using vector as a stack
     */
+    
+    std::vector<int> stack;
+
+    stack.reserve(10); //set the capacity to a certain size
+   
+
 
     return 0;
 }

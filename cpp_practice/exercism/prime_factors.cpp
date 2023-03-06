@@ -1,12 +1,25 @@
 #include "prime_factors.h"
 #include <vector>
 #include <iostream>
+#include <functional>
+#include <numeric>
 
 /* 
 https://exercism.org/tracks/cpp/exercises/prime-factors/edit
 
 https://www.mathsisfun.com/prime-factorization.html
 
+Example: What are the prime factors of 12 ?
+It is best to start working from the smallest prime number, which 
+is 2, so let's check:
+12 ÷ 2 = 6
+Yes, it divided exactly by 2. We have taken the first step!
+But 6 is not a prime number, so we need to go further. Let's try 2 again:
+6 ÷ 2 = 3
+Yes, that worked also. And 3 is a prime number, so we have the answer:
+12 = 2 × 2 × 3
+As you can see, every factor is a prime number, so the answer must be right.
+Note: 12 = 2 × 2 × 3 can also be written using exponents as 12 = 22 × 3
 */
 namespace prime_factors {
 
@@ -31,8 +44,57 @@ namespace prime_factors {
         }
     }
 
+    // primary function
+
     std::vector<int> of(int n) {
-        std::vector<int> ret{};
+
+        /*
+
+        4
+        const std::vector<int> expected{2, 2};
+
+        525
+        const std::vector<int> expected{5, 5, 5, 5};
+
+        901255
+        const std::vector<int> expected{5, 17, 23, 461};
+        plan:
+            1. If n is prime,return n --DONE
+            2. Get vector of primes up to n
+        */
+
+        std::vector<int> possible_primes_up_to_n{};
+        
+        std::vector<int> ret{}; // return vector
+        // if n is prime, return n
+
+        std::cout << "Here: " << std::endl;
+
+        if(is_prime(n)) {
+            ret.push_back(n);
+            
+            return ret;
+        }
+
+        int middle {(n / 2) + 1};
+
+        for(int p {2}; p <= middle; p++) {
+            if(is_prime(p)) {
+                possible_primes_up_to_n.push_back(p);
+            }
+        }
+
+        // try each prime and then keep factoring until the result is prime
+
+        int sum {0};
+        while(sum != n) {
+            for(int i : possible_primes_up_to_n) {
+                std::cout << i << std::endl;
+
+            }
+            sum = std::accumulate(ret.begin(), ret.end(), 1, std::multiplies<int>());
+            std::cout << sum << std::endl;
+        }
 
         return ret;
     }

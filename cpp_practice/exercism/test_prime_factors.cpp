@@ -3,7 +3,7 @@
 
 int main() {
 
-    std::cout << prime_factors::is_prime(5) << std::endl;
+    prime_factors::of(16);
     return 0;
 
 }
