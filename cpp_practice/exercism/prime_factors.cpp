@@ -23,7 +23,7 @@ Note: 12 = 2 × 2 × 3 can also be written using exponents as 12 = 22 × 3
 */
 namespace prime_factors {
 
-    bool is_prime(int p) {
+    bool is_prime(int& p) {
 
         int divisors {0};
         
@@ -44,9 +44,21 @@ namespace prime_factors {
         }
     }
 
-    // primary function
+    int prod_vector(std::vector<int> vec) { // product int vector
+        int sum = 1;
+        if(vec.size() == 0) {
+            return 0;
+        }
+        else {
+            for(int v: vec) {
+                sum *= v;
+             }
+        }
+        return sum;
+    }
 
-    std::vector<int> of(int n) {
+    // primary function
+    std::vector<int> of(int n) { // primary function
 
         /*
 
@@ -68,11 +80,15 @@ namespace prime_factors {
         std::vector<int> ret{}; // return vector
         // if n is prime, return n
 
-        std::cout << "Here: " << std::endl;
+        // n needs to be greater than 1
+        if(n <= 1) {
+            return ret;
+
+        }
 
         if(is_prime(n)) {
             ret.push_back(n);
-            
+            std::cout << ret.at(0) << std::endl;
             return ret;
         }
 
@@ -85,17 +101,27 @@ namespace prime_factors {
         }
 
         // try each prime and then keep factoring until the result is prime
+        int new_n {n};
+        int vector_product {0};
+        while(vector_product != n) {
 
-        int sum {0};
-        while(sum != n) {
-            for(int i : possible_primes_up_to_n) {
-                std::cout << i << std::endl;
-
+            for(int i: possible_primes_up_to_n) {
+                // std::cout << i << std::endl;
+                if(new_n % i == 0) {
+                    ret.push_back(i);
+                    new_n /= i;
+                    break;
+                }
             }
-            sum = std::accumulate(ret.begin(), ret.end(), 1, std::multiplies<int>());
-            std::cout << sum << std::endl;
+            vector_product = prod_vector(ret);
         }
 
+        //     sum = std::accumulate(ret.begin(), ret.end(), 1, std::multiplies<int>());
+        //     std::cout << sum << std::endl;
+        // }
+        // for(auto x : ret) {
+        //     std::cout << x << std::endl;
+        // }
         return ret;
     }
 

@@ -6,7 +6,7 @@
 
 namespace prime_factors {
 
-    bool is_prime(int p);
+    bool is_prime(int& p);
 
     std::vector<int> of(int n);
     

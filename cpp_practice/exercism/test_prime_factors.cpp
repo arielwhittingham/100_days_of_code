@@ -3,7 +3,7 @@
 
 int main() {
 
-    prime_factors::of(16);
+    prime_factors::of(1);
     return 0;
 
 }
