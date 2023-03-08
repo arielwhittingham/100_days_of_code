@@ -25,6 +25,7 @@ Note: 12 = 2 × 2 × 3 can also be written using exponents as 12 = 22 × 3
 */
 namespace prime_factors {
 
+
 //     bool is_prime(int& number) {
 
 //             if (number != 2){
@@ -40,7 +41,7 @@ namespace prime_factors {
 //     return true;
 // }
 
-bool is_prime(int& p) {
+bool is_prime(int& p) { // my function
         int divisors {0};
         
         int middle = (p / 2) + 1;
