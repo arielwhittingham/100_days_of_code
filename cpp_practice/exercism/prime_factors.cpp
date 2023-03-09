@@ -43,9 +43,15 @@ namespace prime_factors {
 
 bool is_prime(int& p) { // my function
         int divisors {0};
+        if(p < 2 || (p%2==0 && p!=2) || (p%3==0 && p!=3)) {
+            return false;
+        }
+        if(p==2 || p==3) {
+            return true;
+        }
         
         int middle = (p / 2) + 1;
-         for(int n {1}; n <= middle; n++) {
+         for(int n {1}; n <= middle; n+=2) {
             if(p % n == 0 and n != p) {
                 divisors += 1;
                 if(divisors > 1) {
