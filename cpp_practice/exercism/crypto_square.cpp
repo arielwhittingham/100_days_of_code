@@ -1,5 +1,7 @@
 #include "crypto_square.h"
 #include <iostream>
+#include <math.h>
+#include <string>
 
 // source: https://exercism.org/tracks/cpp/exercises/crypto-square/edit
 
@@ -62,15 +64,53 @@ back in to the original message:
 /*
 
 REQUIRE("hithere" == crypto_square::cipher("Hi there").normalize_plain_text());
+.cipher_text());
+).normalized_cipher_text
 
+    (r x c)
+    c >= r
+    c >= r
+    c - r <= 1
+    8 *7
+    x
 
 */
 
 
+
 namespace crypto_square {
 
+    class cypher {
+        private:
+            int columns {};
+            int rows {};
+            int input_length {};
+            std::string input_string {};
 
-    
+            // private methods 
+            
+            std::string normalize(std::string s) {
+                
+
+
+            }
+
+
+        public :
+            cypher(std::string inp)
+            : input_string {inp} {
+                
+
+
+
+            }
+            ;
+
+
+    };
+
+
+
 
 
 }
