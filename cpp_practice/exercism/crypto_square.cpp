@@ -90,13 +90,15 @@ namespace crypto_square {
             // private methods 
             
             std::string normalize(std::string s) {
+
+                int len {s.length()};
+                char new {};
                 
-
-
+                
             }
 
 
-        public :
+        public:
             cypher(std::string inp)
             : input_string {inp} {
                 
