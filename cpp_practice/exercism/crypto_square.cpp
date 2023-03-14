@@ -2,6 +2,7 @@
 #include <iostream>
 #include <math.h>
 #include <string>
+#include <regex>
 
 // source: https://exercism.org/tracks/cpp/exercises/crypto-square/edit
 
@@ -92,19 +93,26 @@ namespace crypto_square {
             std::string normalize(std::string s) {
 
                 int len {s.length()};
-                char new {};
-                
-                
+                char new_letter {};
+                std::string new_string {};
+                new_string = std::regex_replace(s, std::regex(" "), "");
+                for(char l: new_string) {
+                    if(!std::ispunct(l)) {
+                        new_letter = tolower(l);
+                        new_string += new_letter;
+                    }
+                    
+                }
+
             }
 
 
         public:
             cypher(std::string inp)
-            : input_string {inp} {
+            {
+                this->input_string = normalize(inp);
+                input_length = this->input_string.length();
                 
-
-
-
             }
             ;
 

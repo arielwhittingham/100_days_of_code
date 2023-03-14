@@ -63,6 +63,7 @@
         "utility": "cpp",
         "vector": "cpp",
         "__functional_base_03": "cpp",
-        "numeric": "cpp"
+        "numeric": "cpp",
+        "regex": "cpp"
     }
 }
