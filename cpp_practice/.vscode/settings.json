@@ -64,6 +64,7 @@
         "vector": "cpp",
         "__functional_base_03": "cpp",
         "numeric": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "deque": "cpp"
     }
 }

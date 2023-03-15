@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <regex>
+#include <math.h>
 
 using namespace std;
 
@@ -33,11 +34,18 @@ int main () {
     std::tolower()
     new_string = std::regex_replace(s, std::regex(" "), "");
     */
-   n_z = normalize(z);
-   for(char g : n_z) {
-    std::cout << g << std::endl;
+    n_z = normalize(z);
+    
+    for(char g : n_z) {
+        std::cout << g << std::endl;
    }
 
+int gg = 6;
+double sq {sqrt(gg)};
+int sq_int = static_cast<int>(sqrt(gg));
+int c_x_r = pow(sq_int,2);
+
+std::cout << " sq: " << sq<< " int " << sq_int << " c_x_r "<< c_x_r<<  std::endl;
     
 
     return 0;

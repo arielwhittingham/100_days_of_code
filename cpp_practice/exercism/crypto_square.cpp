@@ -85,8 +85,8 @@ namespace crypto_square {
         private:
             int columns {};
             int rows {};
-            int input_length {};
-            std::string input_string {};
+            int input_length {}; // set
+            std::string input_string {}; // set
 
             // private methods 
             
@@ -106,6 +106,23 @@ namespace crypto_square {
 
             }
 
+            std::pair find_c_r(int len) {
+                std::pair <int,int> p;
+                double sq {sqrt(len)};
+                int sq_int = static_cast<int>(sqrt(len));
+                int c_x_r = pow(sq_int,2);
+                
+                if(c_x_r == len) {
+
+                }
+                //sqare root of 3 will fail need to add 1 to c and 1 to r as well
+                
+            }
+
+
+
+
+
 
         public:
             cypher(std::string inp)
@@ -115,7 +132,6 @@ namespace crypto_square {
                 
             }
             ;
-
 
     };
 
