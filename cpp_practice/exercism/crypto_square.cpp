@@ -72,7 +72,7 @@ REQUIRE("hithere" == crypto_square::cipher("Hi there").normalize_plain_text());
     c >= r
     c >= r
     c - r <= 1
-    8 *7
+    8 * 7
     x
 
 */
@@ -106,15 +106,39 @@ namespace crypto_square {
 
             }
 
-            std::pair find_c_r(int len) {
+            std::pair<int,int> find_c_r(int len) {
+                /*
+                Get square root of length as an integer
+                if square_root^2 == length
+                    return square root
+                else 
+                    return 
+                        either c = square_root + 1 & r = square_root or
+
+                        c = square_root + 1 & r = square_root +1
+                */
                 std::pair <int,int> p;
-                double sq {sqrt(len)};
                 int sq_int = static_cast<int>(sqrt(len));
                 int c_x_r = pow(sq_int,2);
                 
                 if(c_x_r == len) {
-
+                    p.first = sq_int;
+                    p.second = sq_int;
+                    return p;
                 }
+                else { 
+                    if( (sq_int + 1) * sq_int >= len) {
+                        p.first = sq_int + 1;
+                        p.second = sq_int;
+                        return p;
+                    }
+                    else { //square root of 3 will fail - need to add 1 to c and 1 to r as well
+                        p.first = sq_int + 1;
+                        p.second = sq_int + 1;
+                        return p;
+                    }
+                }
+
                 //sqare root of 3 will fail need to add 1 to c and 1 to r as well
                 
             }
@@ -125,12 +149,15 @@ namespace crypto_square {
 
 
         public:
-            cypher(std::string inp)
+            cypher(std::string inp) // Constructor
             {
                 this->input_string = normalize(inp);
-                input_length = this->input_string.length();
-                
+                this->input_length = this->input_string.length();
+                std::pair<int,int> temp_pair  = find_c_r(this->input_length);
+                this->columns = temp_pair.first; 
+                this->columns = temp_pair.second;
             }
+            
             ;
 
     };
