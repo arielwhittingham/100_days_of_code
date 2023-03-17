@@ -7,9 +7,7 @@ namespace crypto_square {
 
 
 }
-
     
-
 
 
 

@@ -63,7 +63,7 @@ back in to the original message:
 */
 
 /*
-
+Usage
 REQUIRE("hithere" == crypto_square::cipher("Hi there").normalize_plain_text());
 .cipher_text());
 ).normalized_cipher_text
@@ -75,9 +75,12 @@ REQUIRE("hithere" == crypto_square::cipher("Hi there").normalize_plain_text());
     8 * 7
     x
 
+METHODS:
+
+
+
+
 */
-
-
 
 namespace crypto_square {
 
@@ -85,8 +88,10 @@ namespace crypto_square {
         private:
             int columns {};
             int rows {};
-            int input_length {}; // set
-            std::string input_string {}; // set
+            int input_length {}; 
+            std::string input_string {}; 
+            char ** matrix;
+
 
             // private methods 
             
@@ -138,15 +143,27 @@ namespace crypto_square {
                         return p;
                     }
                 }
-
-                //sqare root of 3 will fail need to add 1 to c and 1 to r as well
                 
             }
+            
+            char ** create_matrix(int col, int row) {
+                char** m = new char*[this->rows];
+                for(int x;x< this->rows; x++) {
+                    
+                }
+                
 
+            }
+            /*
 
+            int** a = new int*[rowCount];
+            for(int i = 0; i < rowCount; ++i)
+                a[i] = new int[colCount];
 
+            */
+            
 
-
+            
 
         public:
             cypher(std::string inp) // Constructor
@@ -155,10 +172,30 @@ namespace crypto_square {
                 this->input_length = this->input_string.length();
                 std::pair<int,int> temp_pair  = find_c_r(this->input_length);
                 this->columns = temp_pair.first; 
-                this->columns = temp_pair.second;
+                this->rows = temp_pair.second;
+
+
+            };
+
+            std::string normalize_plain_text() { // done
+                return this->input_string;
             }
-            
-            ;
+
+            std::vector<std::string> plain_text_segments() { //NOT DONE
+                std::vector<std::string> v;
+                return v;
+            }
+
+            std::string cypher_text() { //NOT DONE
+                std::string s;
+                return s;
+            }
+
+            std::string normalized_cipher_text() { //NOT DONE
+                std::string s;
+                return s;
+            }
+
 
     };
 
