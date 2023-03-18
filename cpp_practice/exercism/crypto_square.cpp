@@ -86,12 +86,11 @@ namespace crypto_square {
 
     class cypher {
         private:
-            int columns {};
-            int rows {};
+            int columns {0};
+            int rows {0};
             int input_length {}; 
             std::string input_string {}; 
-            char ** matrix;
-
+            char* matrix[];
 
             // private methods 
             
@@ -146,21 +145,27 @@ namespace crypto_square {
                 
             }
             
-            char ** create_matrix(int col, int row) {
+            char ** create_matrix() {
+                //allocate
                 char** m = new char*[this->rows];
-                for(int x;x< this->rows; x++) {
-                    
+                for(int x; x< this->rows; x++) {
+                    m[x] = new char[this->columns];
                 }
-                
-
+                // fill
+                for(int y; y< this->rows; y++) {
+                    for(int z; z< this->columns; z++) {
+                        m[y][z] = {' '};
+                    }
             }
-            /*
+            return m;
+        }
+            // char ** create_matrix() {
+            //     char** m = new char*[this->rows];
+            //     for(int x; x< this->rows; x++) {
+            //         m[x] = new char[this->columns];
+            //     }
 
-            int** a = new int*[rowCount];
-            for(int i = 0; i < rowCount; ++i)
-                a[i] = new int[colCount];
-
-            */
+            // }
             
 
             
@@ -168,16 +173,20 @@ namespace crypto_square {
         public:
             cypher(std::string inp) // Constructor
             {
+                // get rows and columns
+
                 this->input_string = normalize(inp);
                 this->input_length = this->input_string.length();
                 std::pair<int,int> temp_pair  = find_c_r(this->input_length);
                 this->columns = temp_pair.first; 
                 this->rows = temp_pair.second;
 
+                // create empty matrix (2dim array)
+                this->matrix = create_matrix();
 
             };
 
-            std::string normalize_plain_text() { // done
+            const std::string normalize_plain_text() { // done
                 return this->input_string;
             }
 

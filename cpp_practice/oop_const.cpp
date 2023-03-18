@@ -1,4 +1,6 @@
 
+#include <iostream>
+
 // source: https://www.learncpp.com/cpp-tutorial/const-class-objects-and-member-functions/
 
 // const classes
@@ -78,6 +80,8 @@ Const objects via pass by const reference:
 
 /*
 
+https://www.learncpp.com/cpp-tutorial/static-member-variables/
+
 Review of static keyword uses
 
 In the lesson on file scope and the static keyword, (https://www.learncpp.com/cpp-tutorial/43-file-scope-and-the-static-keyword/)
@@ -99,7 +103,29 @@ int main()
     std::cout << generateID() << '\n';
 
     return 0;
+
+    INITIALIZER ONLY EXECUTED ONCE
+
 }
 */
+class SomethingTwo
+{
+public:
+    int m_value{ 1 };
+};
+
+int main()
+{
+    SomethingTwo first;
+    SomethingTwo second;
+
+    first.m_value = 2;
+
+    std::cout << first.m_value << '\n';
+    std::cout << second.m_value << '\n';
+
+    return 0;
+}
+
 
 
