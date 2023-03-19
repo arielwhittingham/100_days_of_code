@@ -3,28 +3,12 @@
 
 #include <iostream>
 #include <string>
+#include <iterator>
 
 using namespace std;
 
-    class DateClass {
-    public:
-        using SType = std::string; // type alias nested in class
-        SType name {};
-        int m_year {};
-        int m_month {};
-        int m_day {};
-
-
-        void print() { // defines a member function named print() 
-            
-            std::cout << m_year << '/' << m_month << '/' << m_day << std::endl;;
-        }
-    };
-
-    class DateClass2 {
-    
-    /* these are private by default */
-
+class DateClass {
+public:
     using SType = std::string; // type alias nested in class
     SType name {};
     int m_year {};
@@ -32,11 +16,64 @@ using namespace std;
     int m_day {};
 
 
-        void print() { // defines a member function named print() 
-            
-            std::cout << m_year << '/' << m_month << '/' << m_day << std::endl;;
+    void print() { // defines a member function named print() 
+        
+        std::cout << m_year << '/' << m_month << '/' << m_day << std::endl;;
+    }
+};
+
+class DateClass2 {
+
+/* these are private by default */
+
+using SType = std::string; // type alias nested in class
+SType name {};
+int m_year {};
+int m_month {};
+int m_day {};
+
+
+    void print() { // defines a member function named print() 
+        
+        std::cout << m_year << '/' << m_month << '/' << m_day << std::endl;;
+    }
+};
+
+class MyString
+{
+    char* m_string; // we'll dynamically allocate our string here
+    int m_length; // we need to keep track of the string length
+};
+
+
+class IntArray
+{
+private:
+    int m_array[10]; // user can not access this directly any more
+    int array_id {};
+
+public:
+    void setValue(int index, int value) // setter
+    {
+        // If the index is invalid, do nothing
+        if (index < 0 || index >= std::size(m_array))
+            return;
+
+        m_array[index] = value;
+    }
+    int get_id() { // getter
+        return array_id; 
         }
-    };
+
+    void set_id(int id) { //setter
+            array_id = id;
+        }
+
+    // Getters should return by value or const reference.
+
+
+};
+
 
 /*
 
@@ -72,7 +109,7 @@ int main () {
     unless you have a good reason not to.
     
     Encapsulation using:
-    class {}
+    IntArray {}
     */
 
    

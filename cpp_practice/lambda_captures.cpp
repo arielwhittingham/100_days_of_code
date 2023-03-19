@@ -41,6 +41,24 @@ is created, the lambda gets its own cloned variable
 named search. This cloned search has the same value as 
 main‘s search, so it behaves like we’re accessing main‘s 
 search, but we’re not.
+
+To allow modifications of variables that were 
+captured by value, we can mark the lambda as mutable. 
+The mutable keyword in this context removes the const
+ qualification from all variables captured by value.
+    `mutable` keyord
+```[ammo]() mutable { ```
+
+use the default capture:
+
+ex.
+
+  auto found{ std::find_if(areas.begin(), areas.end(),
+                [=](int knownArea) { // will default capture width and height by value
+                    return (width * height == knownArea); // because they're mentioned here
+                }) };
+
+
 */
   if (found == arr.end())
   {

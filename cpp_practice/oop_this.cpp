@@ -62,7 +62,39 @@ int main () {
 
         simple.m_id
 
+    Simple A{1}; // this = &A inside the Simple constructor
+    Simple B{2}; // this = &B inside the Simple constructor
+    A.setID(3); // this = &A inside member function setID
+    B.setID(4); // this = &B inside member function setID
+
     */
+
+
+
+
+   //chaining memeber functions
+
+/*
+   std::cout << "Hello, " << userName;
+
+   (std::cout << "Hello, ") << userName;
+
+       class Calc
+        {
+        private:
+            int m_value{};
+
+        public:
+            Calc& add(int value) { m_value += value; return *this; }
+            Calc& sub(int value) { m_value -= value; return *this; }
+            Calc& mult(int value) { m_value *= value; return *this; }
+
+            int getValue() { return m_value; }
+        };
+
+   calc.add(5).sub(3).mult(4);
+*/
+
    
 
 

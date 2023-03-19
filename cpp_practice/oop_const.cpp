@@ -111,8 +111,33 @@ int main()
 class SomethingTwo
 {
 public:
-    int m_value{ 1 };
+    static inline int m_value{ 1 };
+    /*
+    Because s_value exists independently of any class objects, 
+    it can be accessed directly using the class name and the scope
+    resolution operator (in this case, Something::s_value):
+    */
 };
+
+class SomethingThree
+{
+private:
+    static inline int s_idGenerator { 1 }; // C++17
+//  static int s_idGenerator;              // Use this instead for C++14 or older
+    int m_id { };
+
+public:
+    SomethingThree()
+    : m_id { s_idGenerator++ } // grab the next value from the id generator
+    {}
+
+    int getID() const { return m_id; }
+};
+
+// For C++14 or older, we have to initialize the non-const static member outside the class definition
+// Note that we're defining and initializing s_idGenerator even though it is declared as private above.
+// This is okay since the definition isn't subject to access controls.
+// int Something::s_idGenerator { 1 }; // start our ID generator with value 1 (uncomment for C++14 or older)
 
 int main()
 {
@@ -121,8 +146,25 @@ int main()
 
     first.m_value = 2;
 
+    // use this instead:
+    //      Something::s_value = 2;
+    // Access static members by class name (using the scope resolution operator) rather than through an object of the class (using the member selection operator).
+
+
+    
+
     std::cout << first.m_value << '\n';
     std::cout << second.m_value << '\n';
+
+
+    SomethingThree firstt;
+    SomethingThree secondd;
+    SomethingThree thirdd;
+
+    std::cout << firstt.getID() << '\n';
+    std::cout << secondd.getID() << '\n';
+    std::cout << thirdd.getID() << '\n';
+    return 0;
 
     return 0;
 }

@@ -90,7 +90,7 @@ namespace crypto_square {
             int rows {0};
             int input_length {}; 
             std::string input_string {}; 
-            char* matrix[];
+            char** matrix;
 
             // private methods 
             
