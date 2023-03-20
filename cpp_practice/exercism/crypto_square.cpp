@@ -84,7 +84,7 @@ METHODS:
 
 namespace crypto_square {
 
-    class cypher {
+    class Cypher {
         private:
             int columns {0};
             int rows {0};
@@ -96,17 +96,20 @@ namespace crypto_square {
             
             std::string normalize(std::string s) {
 
-                int len {s.length()};
+                int len { static_cast<int>(s.length()) };
                 char new_letter {};
                 std::string new_string {};
+                std::string final_string {};
                 new_string = std::regex_replace(s, std::regex(" "), "");
                 for(char l: new_string) {
                     if(!std::ispunct(l)) {
                         new_letter = tolower(l);
-                        new_string += new_letter;
+                        final_string += new_letter;
                     }
                     
                 }
+
+                return final_string;
 
             }
 
@@ -151,7 +154,7 @@ namespace crypto_square {
                 for(int x; x< this->rows; x++) {
                     m[x] = new char[this->columns];
                 }
-                // fill
+                // fill with empty
                 for(int y; y< this->rows; y++) {
                     for(int z; z< this->columns; z++) {
                         m[y][z] = {' '};
@@ -159,32 +162,40 @@ namespace crypto_square {
             }
             return m;
         }
-            // char ** create_matrix() {
-            //     char** m = new char*[this->rows];
-            //     for(int x; x< this->rows; x++) {
-            //         m[x] = new char[this->columns];
-            //     }
 
-            // }
-            
+        void fill_matrix()  {
 
-            
+            int counter {0};
+            while(counter<this->input_length) {
+
+            for(int c = 0; c < this->columns; c++) {
+                for(int r = 0; r < this->rows; r++) {
+                    this->matrix[r][c] = this->input_string.at(counter);
+                    counter+=1;
+                    }
+                }
+            }
+        }
 
         public:
-            cypher(std::string inp) // Constructor
+            Cypher(std::string inp) // Constructor
             {
                 // get rows and columns
 
-                this->input_string = normalize(inp);
-                this->input_length = this->input_string.length();
+                this->input_string = normalize(inp); // fine
+                this->input_length = static_cast<int>(this->input_string.length());
                 std::pair<int,int> temp_pair  = find_c_r(this->input_length);
                 this->columns = temp_pair.first; 
                 this->rows = temp_pair.second;
 
                 // create empty matrix (2dim array)
                 this->matrix = create_matrix();
-
+                fill_matrix();
             };
+            int get_size() const {
+                return this->input_length;
+
+            }
 
             const std::string normalize_plain_text() { // done
                 return this->input_string;
@@ -205,11 +216,23 @@ namespace crypto_square {
                 return s;
             }
 
-
     };
 
 
-
-
-
 }
+
+/* ------------------------TEST Main Func ------------------------
+*/
+    int main() {
+
+
+        std::string x {"If man was meant to stay on the ground, god would have given us roots."};
+
+        crypto_square::Cypher c{x};
+        // std::cout << c.normalize_plain_text() << std::endl;
+        // std::cout << c.get_size() << std::endl;
+        
+
+
+        return 0;
+    }

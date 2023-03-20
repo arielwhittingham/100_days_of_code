@@ -1,1 +1,0 @@
-// https://www.learncpp.com/cpp-tutorial/static-member-functions/
