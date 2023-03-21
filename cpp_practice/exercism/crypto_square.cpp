@@ -157,7 +157,7 @@ namespace crypto_square {
                 // fill with empty
                 for(int y; y< this->rows; y++) {
                     for(int z; z< this->columns; z++) {
-                        m[y][z] = {' '};
+                        m[y][z] = {};
                     }
             }
             return m;
@@ -166,11 +166,15 @@ namespace crypto_square {
         void fill_matrix()  {
 
             int counter {0};
-            while(counter<this->input_length) {
+            while(counter < this->input_length) {
 
             for(int c = 0; c < this->columns; c++) {
                 for(int r = 0; r < this->rows; r++) {
-                    this->matrix[r][c] = this->input_string.at(counter);
+                    
+                    std::cout << r << " " << c << std::endl;
+                    // matrix[r][c] = this->input_string.at(counter); //BUG segmentation fault
+                    std::cout << matrix[r][c] << std::endl;
+                    
                     counter+=1;
                     }
                 }
@@ -183,15 +187,29 @@ namespace crypto_square {
                 // get rows and columns
 
                 this->input_string = normalize(inp); // fine
-                this->input_length = static_cast<int>(this->input_string.length());
+
+                this->input_length = static_cast<int>(this->input_string.length()); //fine
+
                 std::pair<int,int> temp_pair  = find_c_r(this->input_length);
-                this->columns = temp_pair.first; 
+
+                this->columns = temp_pair.first;
                 this->rows = temp_pair.second;
 
                 // create empty matrix (2dim array)
                 this->matrix = create_matrix();
+
                 fill_matrix();
+                
             };
+
+             ~Cypher() { // destructor        
+		        for(int i; i < this->rows; i++) {
+                        delete[] this->matrix[i];
+                    }
+                delete[] this->matrix;
+
+             }
+
             int get_size() const {
                 return this->input_length;
 
