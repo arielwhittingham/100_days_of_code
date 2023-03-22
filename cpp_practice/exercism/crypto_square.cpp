@@ -150,32 +150,33 @@ namespace crypto_square {
             
             char ** create_matrix() {
                 //allocate
-                char** m = new char*[this->rows];
-                for(int x; x< this->rows; x++) {
-                    m[x] = new char[this->columns];
+                char** m {new char*[this->rows]}; // allocate an array of 10 int pointers — these are our rows
+                for(int x {0}; x < this->rows; x++) {
+                    m[x] = new char[this->columns]; // these are our columns
                 }
                 // fill with empty
-                for(int y; y< this->rows; y++) {
+                for(int y {0}; y< this->rows; y++) {
                     for(int z; z< this->columns; z++) {
-                        m[y][z] = {};
+                        m[y][z] = {' '};
                     }
             }
             return m;
         }
+        
 
         void fill_matrix()  {
 
             int counter {0};
-            while(counter < this->input_length) {
-
+            int max_len {this->input_length};
+            
             for(int c = 0; c < this->columns; c++) {
                 for(int r = 0; r < this->rows; r++) {
-                    
-                    std::cout << r << " " << c << std::endl;
-                    // matrix[r][c] = this->input_string.at(counter); //BUG segmentation fault
-                    std::cout << matrix[r][c] << std::endl;
-                    
+                    char current = this->input_string.at(counter);
+                    matrix[r][c] = current; //BUG segmentation fault
+                    // Look here  https://stackoverflow.com/questions/19821146/replacing-values-in-a-2d-array
                     counter+=1;
+                    if(counter>= max_len) {
+                        return;
                     }
                 }
             }
@@ -186,7 +187,7 @@ namespace crypto_square {
             {
                 // get rows and columns
 
-                this->input_string = normalize(inp); // fine
+                this->input_string = normalize(inp);
 
                 this->input_length = static_cast<int>(this->input_string.length()); //fine
 
