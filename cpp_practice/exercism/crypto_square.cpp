@@ -172,8 +172,7 @@ namespace crypto_square {
             for(int c = 0; c < this->columns; c++) {
                 for(int r = 0; r < this->rows; r++) {
                     char current = this->input_string.at(counter);
-                    matrix[r][c] = current; //BUG segmentation fault
-                    // Look here  https://stackoverflow.com/questions/19821146/replacing-values-in-a-2d-array
+                    matrix[r][c] = current; 
                     counter+=1;
                     if(counter>= max_len) {
                         return;
@@ -215,6 +214,13 @@ namespace crypto_square {
                 return this->input_length;
 
             }
+            char ** get_matrix() {
+                return matrix;
+            }
+
+            // get logic from tested for each method
+            // TESTS
+            // https://exercism.org/tracks/cpp/exercises/crypto-square/edit
 
             const std::string normalize_plain_text() { // done
                 return this->input_string;
@@ -236,8 +242,6 @@ namespace crypto_square {
             }
 
     };
-
-
 }
 
 /* ------------------------TEST Main Func ------------------------
@@ -248,7 +252,11 @@ namespace crypto_square {
         std::string x {"If man was meant to stay on the ground, god would have given us roots."};
 
         crypto_square::Cypher c{x};
-        // std::cout << c.normalize_plain_text() << std::endl;
+        char ** mat=  c.get_matrix();
+        std::cout << mat[3][7] << std::endl;
+        std::cout << mat[4][7] << std::endl;
+        std::cout << mat[5][7] << std::endl;
+        std::cout << mat[6][7] << std::endl;
         // std::cout << c.get_size() << std::endl;
         
 
