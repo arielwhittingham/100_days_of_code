@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include <regex>
 #include <math.h>
 
@@ -96,6 +97,25 @@ int main () {
     int c_x_r = pow(sq_int,2);
 
     std::cout << " sq: " << sq<< " int " << sq_int << " c_x_r "<< c_x_r<<  std::endl;
+
+    
+    std::vector<std::string> v5(5);
+    std::vector<std::string> vf;
+
+    for(int h {0}; h < 5; h++) {
+        std::cout << h <<std::endl;    
+        std::string* str = new std::string{}; 
+        for(int i; i < 3; i++) {
+        
+            *str+= 'g';
+        }
+        std::cout << *str <<std::endl;    
+        vf.push_back(*str);
+    }
+
+    for(auto& k: vf) {
+        std::cout << k <<std::endl;
+    }
     
 
     return 0;

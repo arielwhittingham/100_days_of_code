@@ -228,6 +228,37 @@ namespace crypto_square {
 
             std::vector<std::string> plain_text_segments() { //NOT DONE
                 std::vector<std::string> v;
+
+/*
+
+                        (columns)
+                        1 2 3 4 5 6
+                        _ _ _ _ _ _ 
+             (rows) 1 | X X X X X X
+                    2 | X X X X X X
+                    3 | X X X X X X
+                    4 | X X X X X X
+                    5 | X X X X X X
+
+
+                    "imtgdvs"
+                    "fearwer"
+                    "mayoogo"
+                    "anouuio"
+                    "ntnnlvt"
+                    "wttddes"
+                    "aohghn "
+                    "sseoau "
+
+
+
+
+*/
+
+
+
+
+
                 return v;
             }
 
