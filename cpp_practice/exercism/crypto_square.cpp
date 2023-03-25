@@ -225,9 +225,22 @@ namespace crypto_square {
             const std::string normalize_plain_text() { // done
                 return this->input_string;
             }
+            
 
-            std::vector<std::string> plain_text_segments() { //NOT DONE
+            std::vector<std::string> plain_text_segments() { //NOT DONE (bug...)
+
                 std::vector<std::string> v;
+
+                std::string word;
+
+                for(int c{0}; c < this->columns; c++) {
+                    // for each column make a string and add to it
+                    for(int r{0}; r < this->rows; r++) {
+                        char letter(this->matrix[r][c]); //character from word matrix
+                        word.push_back(letter);
+                    }
+                    v.push_back(word);
+                }
 
 /*
 
@@ -249,10 +262,6 @@ namespace crypto_square {
                     "wttddes"
                     "aohghn "
                     "sseoau "
-
-
-
-
 */
 
 
@@ -261,6 +270,11 @@ namespace crypto_square {
 
                 return v;
             }
+
+            /*
+            CREATE AN OVERLOAD TO PRINT OUT THE RESULT VECTOR
+            https://www.youtube.com/watch?v=mS9755gF66w
+            */
 
             std::string cypher_text() { //NOT DONE
                 std::string s;
@@ -288,7 +302,12 @@ namespace crypto_square {
         std::cout << mat[4][7] << std::endl;
         std::cout << mat[5][7] << std::endl;
         std::cout << mat[6][7] << std::endl;
-        // std::cout << c.get_size() << std::endl;
+
+        std::vector<std::string> test_v = c.plain_text_segments(); 
+        
+        for(auto& w : test_v) {
+            std::cout << w << std::endl;
+        }
         
 
 
