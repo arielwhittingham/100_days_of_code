@@ -169,8 +169,8 @@ namespace crypto_square {
             int counter {0};
             int max_len {this->input_length};
             
-            for(int c = 0; c < this->columns; c++) {
-                for(int r = 0; r < this->rows; r++) {
+            for(int r = 0; r < this->rows; r++) {
+                for(int c = 0; c < this->columns; c++) {
                     char current = this->input_string.at(counter);
                     matrix[r][c] = current; 
                     counter+=1;
@@ -231,10 +231,10 @@ namespace crypto_square {
 
                 std::vector<std::string> v;
 
-                std::string word;
-
+                
                 for(int c{0}; c < this->columns; c++) {
                     // for each column make a string and add to it
+                    std::string word {""};
                     for(int r{0}; r < this->rows; r++) {
                         char letter(this->matrix[r][c]); //character from word matrix
                         word.push_back(letter);
@@ -298,10 +298,14 @@ namespace crypto_square {
 
         crypto_square::Cypher c{x};
         char ** mat=  c.get_matrix();
-        std::cout << mat[3][7] << std::endl;
-        std::cout << mat[4][7] << std::endl;
-        std::cout << mat[5][7] << std::endl;
-        std::cout << mat[6][7] << std::endl;
+        std::cout << mat[0][0] << std::endl;
+        std::cout << mat[1][0] << std::endl;
+        std::cout << mat[2][0] << std::endl;
+        std::cout << mat[3][0] << std::endl;
+        std::cout << mat[4][0] << std::endl;
+        std::cout << mat[5][0] << std::endl;
+        std::cout << mat[6][0] << std::endl;
+        std::cout << mat[7][0] << std::endl;
 
         std::vector<std::string> test_v = c.plain_text_segments(); 
         
