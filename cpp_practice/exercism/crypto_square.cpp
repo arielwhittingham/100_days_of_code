@@ -80,8 +80,7 @@ METHODS:
 
 namespace crypto_square {
 
-
-    std::string Cypher::normalize(std::string s) {
+    std::string cipher::normalize(std::string s) {
         int len { static_cast<int>(s.length()) };
         char new_letter {};
         std::string new_string {};
@@ -96,7 +95,7 @@ namespace crypto_square {
         return final_string;
     }
 
-    std::pair<int,int> Cypher::find_c_r(int len) {
+    std::pair<int,int> cipher::find_c_r(int len) {
 
         std::pair <int,int> p;
         int sq_int = static_cast<int>(sqrt(len));
@@ -121,7 +120,7 @@ namespace crypto_square {
         }
     }
     
-    char ** Cypher::create_matrix() {
+    char ** cipher::create_matrix() {
         //allocate
         char** m {new char*[this->rows]}; // allocate an array of 10 int pointers — these are our rows
         for(int x {0}; x < this->rows; x++) {
@@ -136,7 +135,7 @@ namespace crypto_square {
     return m;
 }
 
-void Cypher::fill_matrix()  {
+void cipher::fill_matrix()  {
     int counter {0};
     int max_len {this->input_length};
     
@@ -151,7 +150,7 @@ void Cypher::fill_matrix()  {
         }
     }
 }
-    Cypher::Cypher(std::string inp) { // Constructor
+    cipher::cipher(std::string inp) { // Constructor
         // get rows and columns
         this->input_string = normalize(inp);
         this->input_length = static_cast<int>(this->input_string.length()); //fine
@@ -163,26 +162,26 @@ void Cypher::fill_matrix()  {
         fill_matrix();
     };
 
-        Cypher::~Cypher() { // destructor        
+        cipher::~cipher() { // destructor        
         for(int i; i < this->rows; i++) {
                 delete[] this->matrix[i];
             }
         delete[] this->matrix;
         }
 
-    int Cypher::get_size() const {
+    int cipher::get_size() const {
         return this->input_length;
 
     }
-    char ** Cypher::get_matrix() {
+    char ** cipher::get_matrix() {
         return matrix;
     }
-    const std::string Cypher::normalize_plain_text() { // done
+    const std::string cipher::normalize_plain_text() { // done
         return this->input_string;
     }
     
 
-    std::vector<std::string> Cypher::plain_text_segments() { // DONE (bug...)
+    std::vector<std::string> cipher::plain_text_segments() { // DONE (bug...)
 
         std::vector<std::string> v;
 
@@ -204,7 +203,7 @@ void Cypher::fill_matrix()  {
     https://www.youtube.com/watch?v=mS9755gF66w
     */
 
-    std::string Cypher::cypher_text() { 
+    std::string cipher::cipher_text() { 
         std::string word {""};
 
         for(int c{0}; c < this->columns; c++) {
@@ -219,7 +218,7 @@ void Cypher::fill_matrix()  {
         return word;
     }
 
-    std::vector<std::string> Cypher::normalized_cipher_text() { 
+    std::vector<std::string> cipher::normalized_cipher_text() { 
         std::vector<std::string> v;
         for(int c{0}; c < this->columns; c++) {
             // for each column make a string and add to it
